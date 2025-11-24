@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 
 
-def fetch_data(source: str) -> np.ndarray:
+def fetch_data(source: str) -> tuple[np.ndarray, np.ndarray]:
     """
     Fetch data from the given source.
 
@@ -13,4 +13,6 @@ def fetch_data(source: str) -> np.ndarray:
         np.ndarray: An array of data records.
     """
     df = pd.read_csv(source).to_numpy()
-    return df
+    X = df[:, :-1]
+    y = df[:, -1]
+    return X, y
